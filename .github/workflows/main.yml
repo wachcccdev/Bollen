@@ -22,8 +22,8 @@ jobs:
           gradle-version: '8.9'
 
       - name: Extract project
-        run: unzip -o BollenStapelenAutoPlayer-prototype.zip
-
+        run: unzip -o BollenStapelenAutoPlayer-crashfix.zip
+        
       - name: Fix Java and Kotlin versions
         run: |
           cat > BollenStapelenAutoPlayer/app/build.gradle.kts <<'EOF'
