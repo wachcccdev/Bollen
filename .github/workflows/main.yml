@@ -21,10 +21,14 @@ jobs:
         with:
           gradle-version: '8.9'
 
+      - name: Extract project
+        run: unzip -o BollenStapelenAutoPlayer-prototype.zip
+
       - name: Build APK
         run: gradle assembleDebug
+        working-directory: BollenStapelenAutoPlayer
 
       - uses: actions/upload-artifact@v4
         with:
           name: Bollen-Auto-Player
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: BollenStapelenAutoPlayer/app/build/outputs/apk/debug/app-debug.apk
