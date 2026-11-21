@@ -24,6 +24,37 @@ jobs:
       - name: Extract project
         run: unzip -o BollenStapelenAutoPlayer-prototype.zip
 
+      - name: Fix Java and Kotlin versions
+        run: |
+          cat > BollenStapelenAutoPlayer/app/build.gradle.kts <<'EOF'
+          plugins {
+              id("com.android.application")
+              id("org.jetbrains.kotlin.android")
+          }
+
+          android {
+              namespace = "nl.wachccc.bollenstapelen"
+              compileSdk = 35
+
+              defaultConfig {
+                  applicationId = "nl.wachccc.bollenstapelen"
+                  minSdk = 30
+                  targetSdk = 35
+                  versionCode = 1
+                  versionName = "0.1-prototype"
+              }
+
+              compileOptions {
+                  sourceCompatibility = JavaVersion.VERSION_17
+                  targetCompatibility = JavaVersion.VERSION_17
+              }
+
+              kotlinOptions {
+                  jvmTarget = "17"
+              }
+          }
+          EOF
+
       - name: Build APK
         run: gradle assembleDebug
         working-directory: BollenStapelenAutoPlayer
